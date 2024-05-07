@@ -1,1 +1,478 @@
-[]
+[
+    {
+        "id": "d405fc4ed8d04e95",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "ccd45ff1a1364da7",
+        "type": "group",
+        "z": "d405fc4ed8d04e95",
+        "name": "",
+        "style": {
+            "stroke": "#0070c0",
+            "fill": "#bfdbef",
+            "label": true
+        },
+        "nodes": [
+            "ab9728e63136490d",
+            "b091ca33e4e11574",
+            "5d46deec8cd47c28",
+            "bb634367cf2e63b9",
+            "f377c20aaf1bcefe",
+            "e3b890375797dfe0",
+            "4ec2d1b28880e75a",
+            "4c2882827dce3898",
+            "19a01efc228e7543",
+            "8c7966b397f24cc0",
+            "786457d90186e5eb",
+            "b11a838b8eb824f9",
+            "3f18f0ab027d8852",
+            "8352c0a4a2c475af",
+            "adf98cd6c6552c1e",
+            "dc81d79c1e862676",
+            "fc1b52d85eb8acbf",
+            "7863f9d4e108ea40",
+            "3a8100049ad772ba",
+            "96b4286c3af28b79",
+            "50a543aead0a6242",
+            "b8b3b63879dc0706",
+            "ad9dbaa393bc7ba0"
+        ],
+        "x": 54,
+        "y": 39,
+        "w": 1152,
+        "h": 542
+    },
+    {
+        "id": "e7a2762b4d2ddc66",
+        "type": "mongodb",
+        "hostname": "mongo-5485-ubos-qt4nr-mongo-5485.ubos-qt4nr",
+        "topology": "direct",
+        "connectOptions": "authSource=admin",
+        "port": "27017",
+        "db": "mongo-5485",
+        "name": "product list"
+    },
+    {
+        "id": "ab9728e63136490d",
+        "type": "mongodb in",
+        "z": "d405fc4ed8d04e95",
+        "g": "ccd45ff1a1364da7",
+        "mongodb": "e7a2762b4d2ddc66",
+        "name": "",
+        "collection": "products",
+        "operation": "find",
+        "x": 600,
+        "y": 80,
+        "wires": [
+            [
+                "4c2882827dce3898"
+            ]
+        ]
+    },
+    {
+        "id": "b091ca33e4e11574",
+        "type": "http in",
+        "z": "d405fc4ed8d04e95",
+        "g": "ccd45ff1a1364da7",
+        "name": "",
+        "url": "/createProduct",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 170,
+        "y": 180,
+        "wires": [
+            [
+                "5d46deec8cd47c28"
+            ]
+        ]
+    },
+    {
+        "id": "5d46deec8cd47c28",
+        "type": "function",
+        "z": "d405fc4ed8d04e95",
+        "g": "ccd45ff1a1364da7",
+        "name": "create product",
+        "func": "\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 180,
+        "wires": [
+            [
+                "bb634367cf2e63b9",
+                "f377c20aaf1bcefe"
+            ]
+        ]
+    },
+    {
+        "id": "bb634367cf2e63b9",
+        "type": "mongodb out",
+        "z": "d405fc4ed8d04e95",
+        "g": "ccd45ff1a1364da7",
+        "mongodb": "e7a2762b4d2ddc66",
+        "name": "",
+        "collection": "products",
+        "payonly": true,
+        "upsert": false,
+        "multi": false,
+        "operation": "insert",
+        "x": 600,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "f377c20aaf1bcefe",
+        "type": "http response",
+        "z": "d405fc4ed8d04e95",
+        "g": "ccd45ff1a1364da7",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 550,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "e3b890375797dfe0",
+        "type": "http in",
+        "z": "d405fc4ed8d04e95",
+        "g": "ccd45ff1a1364da7",
+        "name": "",
+        "url": "/getProducts",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 160,
+        "y": 80,
+        "wires": [
+            [
+                "4ec2d1b28880e75a"
+            ]
+        ]
+    },
+    {
+        "id": "4ec2d1b28880e75a",
+        "type": "function",
+        "z": "d405fc4ed8d04e95",
+        "g": "ccd45ff1a1364da7",
+        "name": "get all products",
+        "func": "msg.payload={}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 80,
+        "wires": [
+            [
+                "ab9728e63136490d"
+            ]
+        ]
+    },
+    {
+        "id": "4c2882827dce3898",
+        "type": "http response",
+        "z": "d405fc4ed8d04e95",
+        "g": "ccd45ff1a1364da7",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 810,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "19a01efc228e7543",
+        "type": "http in",
+        "z": "d405fc4ed8d04e95",
+        "g": "ccd45ff1a1364da7",
+        "name": "",
+        "url": "/updateProduct",
+        "method": "put",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 170,
+        "y": 300,
+        "wires": [
+            [
+                "b11a838b8eb824f9"
+            ]
+        ]
+    },
+    {
+        "id": "8c7966b397f24cc0",
+        "type": "http response",
+        "z": "d405fc4ed8d04e95",
+        "g": "ccd45ff1a1364da7",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 610,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "786457d90186e5eb",
+        "type": "mongodb out",
+        "z": "d405fc4ed8d04e95",
+        "g": "ccd45ff1a1364da7",
+        "mongodb": "e7a2762b4d2ddc66",
+        "name": "",
+        "collection": "products",
+        "payonly": false,
+        "upsert": false,
+        "multi": false,
+        "operation": "update",
+        "x": 640,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "b11a838b8eb824f9",
+        "type": "function",
+        "z": "d405fc4ed8d04e95",
+        "g": "ccd45ff1a1364da7",
+        "name": "update one product",
+        "func": "msg.query={\n    _id: objectid(msg.payload._id)\n}\n\ndelete msg.payload._id\n\nmsg.payload={\n    $set: msg.payload\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [
+            {
+                "var": "objectid",
+                "module": "objectid"
+            }
+        ],
+        "x": 390,
+        "y": 300,
+        "wires": [
+            [
+                "786457d90186e5eb",
+                "8c7966b397f24cc0"
+            ]
+        ]
+    },
+    {
+        "id": "3f18f0ab027d8852",
+        "type": "http in",
+        "z": "d405fc4ed8d04e95",
+        "g": "ccd45ff1a1364da7",
+        "name": "",
+        "url": "/deleteProduct",
+        "method": "delete",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 180,
+        "y": 440,
+        "wires": [
+            [
+                "8352c0a4a2c475af"
+            ]
+        ]
+    },
+    {
+        "id": "8352c0a4a2c475af",
+        "type": "function",
+        "z": "d405fc4ed8d04e95",
+        "g": "ccd45ff1a1364da7",
+        "name": "delete one product",
+        "func": "msg.payload={\n    _id: objectid(msg.payload._id)\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [
+            {
+                "var": "objectid",
+                "module": "objectid"
+            }
+        ],
+        "x": 390,
+        "y": 440,
+        "wires": [
+            [
+                "adf98cd6c6552c1e",
+                "dc81d79c1e862676"
+            ]
+        ]
+    },
+    {
+        "id": "adf98cd6c6552c1e",
+        "type": "mongodb out",
+        "z": "d405fc4ed8d04e95",
+        "g": "ccd45ff1a1364da7",
+        "mongodb": "e7a2762b4d2ddc66",
+        "name": "",
+        "collection": "products",
+        "payonly": false,
+        "upsert": false,
+        "multi": false,
+        "operation": "delete",
+        "x": 640,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "dc81d79c1e862676",
+        "type": "http response",
+        "z": "d405fc4ed8d04e95",
+        "g": "ccd45ff1a1364da7",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 590,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "fc1b52d85eb8acbf",
+        "type": "function",
+        "z": "d405fc4ed8d04e95",
+        "g": "ccd45ff1a1364da7",
+        "name": "req to open ai",
+        "func": "msg.OPENAI_API_KEY= msg.payload.key\nmsg.messages = [{\n    \"role\": \"system\", \"content\": `\nYou are a helpful assistant.\nGiven a user's question and a API tool documentation, you need to output parameters according to the API tool documentation to successfully call the API to solve the user's question.\\n\nPlease note that: \\n\n1. The Example in the API tool documentation can help you better understand the use of the API.\\n\n2. Ensure the parameters you output are correct. The output must contain the required parameters, and can contain the optional parameters based on the question. If no paremters in the required parameters and optional parameters, just leave it as {{\\\"Parameters\\\":{{}}}}\\n\n3. If the user's question mentions other APIs, you should ONLY consider the API tool documentation I give and do not consider other APIs.\\n\n4. The question may have dependencies on answers of other questions, so we will provide logs of previous questions and answers for your reference.\\n\n5. If you recive a list of objects from user's question, Parameters should have an array of all listed objects\n6. You must ONLY output in a parsible JSON format. Two examples output looks like:\\n\n\\n\nExample 1: {{\\\"URL\\\":\"API url\",\\\"Method\\\":\"API HTTP Method\",\\\"Parameters\\\":{{\\\"input\\\": [1,2,3]}}}}\\n\n\n'''\\n\nThis is the user's question: ${msg.payload.prompt}\\n\nThis is API tool documentation: \nBase url: ${env.get('noderedURL')} \\n\nEndpoint: /createProduct \\n\ndescription: create new products records\nrequestBody:\n- description: The name of the product that must be created.\n  in: body\n  name: name\n  required: true\n  schema:\n    type: string\n- description: The price of the product that must be created in $.\n  in: body\n  name: price\n  required: true\n  schema:\n    type: number\n- description: Rating of the product that allow to understand quality from 1 to 5. If not provided return 1.\n  in: body\n  name: rating\n  required: true\n  schema:\n    type: string\n\nOutput:\\n\n\n` },\n    {\n        \"role\": \"user\", \"content\": `\n\n\n    ` }]\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 540,
+        "wires": [
+            [
+                "b8b3b63879dc0706"
+            ]
+        ]
+    },
+    {
+        "id": "7863f9d4e108ea40",
+        "type": "function",
+        "z": "d405fc4ed8d04e95",
+        "g": "ccd45ff1a1364da7",
+        "name": "prepare data to save on mongo",
+        "func": "const dataFromAI = JSON.parse(msg.payload.choices[0].message.content)\nmsg.url = dataFromAI.URL\nmsg.method = dataFromAI.Method\nmsg.payload = dataFromAI.Parameters\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 790,
+        "y": 540,
+        "wires": [
+            [
+                "50a543aead0a6242"
+            ]
+        ]
+    },
+    {
+        "id": "3a8100049ad772ba",
+        "type": "http in",
+        "z": "d405fc4ed8d04e95",
+        "g": "ccd45ff1a1364da7",
+        "name": "",
+        "url": "/AIBulkCreate",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 170,
+        "y": 540,
+        "wires": [
+            [
+                "fc1b52d85eb8acbf"
+            ]
+        ]
+    },
+    {
+        "id": "96b4286c3af28b79",
+        "type": "http response",
+        "z": "d405fc4ed8d04e95",
+        "g": "ccd45ff1a1364da7",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1130,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "50a543aead0a6242",
+        "type": "http request",
+        "z": "d405fc4ed8d04e95",
+        "g": "ccd45ff1a1364da7",
+        "name": "to mongo",
+        "method": "POST",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 1000,
+        "y": 540,
+        "wires": [
+            [
+                "96b4286c3af28b79"
+            ]
+        ]
+    },
+    {
+        "id": "b8b3b63879dc0706",
+        "type": "openai-ubos",
+        "z": "d405fc4ed8d04e95",
+        "g": "ccd45ff1a1364da7",
+        "name": "",
+        "model": "gpt-3.5-turbo",
+        "temperature": 0.5,
+        "max_tokens": 3000,
+        "prompt": "",
+        "frequency_penalty": 0,
+        "presence_penalty": 0,
+        "top_p": 1,
+        "stop": {
+            "type": "json",
+            "value": "[]"
+        },
+        "OPENAI_API_KEY": "",
+        "x": 560,
+        "y": 540,
+        "wires": [
+            [
+                "7863f9d4e108ea40",
+                "ad9dbaa393bc7ba0"
+            ]
+        ]
+    },
+    {
+        "id": "ad9dbaa393bc7ba0",
+        "type": "debug",
+        "z": "d405fc4ed8d04e95",
+        "g": "ccd45ff1a1364da7",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 720,
+        "y": 500,
+        "wires": []
+    }
+]
