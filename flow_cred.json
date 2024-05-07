@@ -1,1 +1,7 @@
-{}
+{
+    "e7a2762b4d2ddc66": {
+        "user": "${CRUD-MONGO-USER-NAME}",
+        "password": "${CRUD-MONGO-DB-PASSWORD}"
+    },
+    "b8b3b63879dc0706": {}
+}

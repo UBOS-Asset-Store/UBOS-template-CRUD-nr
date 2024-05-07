@@ -50,11 +50,11 @@
     {
         "id": "e7a2762b4d2ddc66",
         "type": "mongodb",
-        "hostname": "mongo-5485-ubos-qt4nr-mongo-5485.ubos-qt4nr",
+        "hostname": "${CRUD-MONGO-HOST-NAME}",
         "topology": "direct",
         "connectOptions": "authSource=admin",
         "port": "27017",
-        "db": "mongo-5485",
+        "db": "${CRUD-MONGO-DB-NAME}",
         "name": "product list"
     },
     {
