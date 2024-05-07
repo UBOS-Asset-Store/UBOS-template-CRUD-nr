@@ -50,11 +50,11 @@
     {
         "id": "e7a2762b4d2ddc66",
         "type": "mongodb",
-        "hostname": "${CRUD-MONGO-HOST-NAME}",
+        "hostname": "${DB-MONGO-HOST-NAME}",
         "topology": "direct",
         "connectOptions": "authSource=admin",
         "port": "27017",
-        "db": "${CRUD-MONGO-DB-NAME}",
+        "db": "${DB-MONGO-DB-NAME}",
         "name": "product list"
     },
     {
